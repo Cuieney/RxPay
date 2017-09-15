@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_default.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay/build/intermediates/res/merged/androidTest/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/cuieneydemacbook/.android/build-cache/bc9513b5eb443e4cd8274ed92b9aaf1418ea107d/output/res/color-v23/abc_tint_seek_thumb.xml"
+    }
+]

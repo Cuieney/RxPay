@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cuieney.library</groupId>
+  <artifactId>rxpay-api</artifactId>
+  <version>1.0.1</version>
+  <packaging>aar</packaging>
+  <name>payment tools</name>
+  <url>https://github.com/Cuieney/rxpay</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>cuieney</id>
+      <name>cuieney</name>
+      <email>cuieney@163.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>https://github.com/Cuieney/rxpay.git</connection>
+    <developerConnection>https://github.com/Cuieney/rxpay.git</developerConnection>
+    <url>https://github.com/Cuieney/rxpay</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>io.reactivex.rxjava2</groupId>
+      <artifactId>rxjava</artifactId>
+      <version>2.1.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tencent.mm.opensdk</groupId>
+      <artifactId>wechat-sdk-android-with-mta</artifactId>
+      <version>+</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.cuieney.rxpay</groupId>
+      <artifactId>rxpay-annotition</artifactId>
+      <version>1.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,13 @@
+-classpath '/Users/cuieneydemacbook/Downloads/android-sdk-macosx/platforms/android-26/android.jar'
+-d '/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/build/docs/javadoc'
+-doctitle 'rxpay-api 1.0.1 API'
+-encoding 'UTF-8'
+-quiet 
+-windowtitle 'rxpay-api 1.0.1 API'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/alipay/AlipayWay.java'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/alipay/PayResult.java'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/PaymentStatus.java'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/PayWay.java'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/RxBus.java'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/RxPay.java'
+'/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/wechatpay/WXPayWay.java'

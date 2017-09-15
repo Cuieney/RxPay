@@ -1,0 +1,67 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+apply plugin: 'maven'
+
+def versionName = "1.0.1"
+group "com.cuieney.rxpay"
+version versionName
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile gradleApi()
+    compile "commons-io:commons-io:1.4"
+    compile 'commons-codec:commons-codec:1.6'
+}
+
+apply plugin: 'maven-publish'
+
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
+Properties properties = new Properties()
+//读取properties的配置信息，当然直接把信息写到代码里也是可以的
+properties.load(new File('/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    publications = ['mavenJava']
+    pkg {
+        userOrg="cui131425"
+        repo = 'mave'
+        name = 'RxPay-Annotation'
+        desc = 'annotation for RxPay'
+        websiteUrl = 'https://github.com/Cuieney/rxpay'
+        issueTrackerUrl = 'https://github.com/Cuieney/rxpay/issues'
+        vcsUrl = 'https://github.com/Cuieney/rxpay'
+        publicDownloadNumbers = true
+        licenses = ['MIT']
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'com.cuieney.rxpay_annotation'
+            artifactId 'gradle'
+            version versionName
+        }
+    }
+}
