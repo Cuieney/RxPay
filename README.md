@@ -1,10 +1,8 @@
 
-![](https://github.com/Cuieney/RxPay/blob/master/img/logo.png)
+# RxPay
+![](http://upload-images.jianshu.io/upload_images/3415839-3ea8440db719d1c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-
-[![Download](https://api.bintray.com/packages/tangsiyuan/maven/pay/images/download.svg) ](https://bintray.com/cui131425/mave/RxPay)
-
+基于rxjava 封装的一个支付宝微信支付工具，一行代码完成请求支付流程，简单方便。
 ## What's RxPay ?
 
 **让支付从此简单下去，一键支付功能，支持支付宝支付，微信支付**
@@ -35,7 +33,7 @@ dependencies {
 
 ```
 @WX(packageName = "微信支付注册keystore时候的包名")
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity 
 ```
 2.在AndroidManifest添加你微信支付的appid
 
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity
                 });
 
 ```
-
+    
 2.发起微信支付请求
 
 ```
@@ -101,8 +99,8 @@ public class MainActivity extends AppCompatActivity
 [code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
 
 #### 问题
-发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/AutoFix/issues) or
-Email <cuieney@163.com>
+发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/AutoFix/issues) or 
+Email <cuieney@163.com> 
 
 ### License
 
@@ -121,4 +119,6 @@ Email <cuieney@163.com>
 > See the License for the specific language governing permissions and
 > limitations under the License.
 > ``
+
+
 
