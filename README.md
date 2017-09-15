@@ -1,6 +1,6 @@
 
 # RxPay
-![](http://upload-images.jianshu.io/upload_images/3415839-3ea8440db719d1c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://github.com/Cuieney/RxPay/blob/master/img/logo.png)
 
 基于rxjava 封装的一个支付宝微信支付工具，一行代码完成请求支付流程，简单方便。
 ## What's RxPay ?
