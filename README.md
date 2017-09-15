@@ -1,7 +1,7 @@
 
 ![](https://github.com/Cuieney/RxPay/blob/master/img/logo.png)
 
-基于rxjava 封装的一个支付宝微信支付工具，一行代码完成请求支付流程，简单方便。
+
 ## What's RxPay ?
 
 **让支付从此简单下去，一键支付功能，支持支付宝支付，微信支付**
