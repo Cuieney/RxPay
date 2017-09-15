@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cuieney.library</groupId>
   <artifactId>rxpay-api</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
   <packaging>aar</packaging>
   <name>payment tools</name>
   <url>https://github.com/Cuieney/rxpay</url>
@@ -42,7 +42,7 @@
     <dependency>
       <groupId>com.cuieney.rxpay</groupId>
       <artifactId>rxpay-annotition</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.3</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

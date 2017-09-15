@@ -2,7 +2,7 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
-def versionName = "1.0.1"
+def versionName = "1.0.3"
 group "com.cuieney.rxpay"
 version versionName
 
@@ -59,8 +59,8 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId 'com.cuieney.rxpay_annotation'
-            artifactId 'gradle'
+            groupId 'com.cuieney.library'
+            artifactId 'rxpay-annotation'
             version versionName
         }
     }

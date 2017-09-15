@@ -1,7 +1,7 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.1"
+version = "1.0.3"
 def siteUrl = 'https://github.com/Cuieney/rxpay'   // 项目的主页
 def gitUrl = 'https://github.com/Cuieney/rxpay.git'   // Git仓库的url
 group = "com.cuieney.library"            // Maven Group ID for the artifact，
