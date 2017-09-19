@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
 [code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
 
 #### 问题
-发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/AutoFix/issues) or 
+发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/RxPay/issues) or 
 Email <cuieney@163.com> 
 
 ### License
