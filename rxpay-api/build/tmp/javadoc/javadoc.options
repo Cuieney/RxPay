@@ -1,9 +1,9 @@
 -classpath '/Users/cuieneydemacbook/Downloads/android-sdk-macosx/platforms/android-26/android.jar'
 -d '/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/build/docs/javadoc'
--doctitle 'rxpay-api 1.0.3 API'
+-doctitle 'rxpay-api 1.1.0 API'
 -encoding 'UTF-8'
 -quiet 
--windowtitle 'rxpay-api 1.0.3 API'
+-windowtitle 'rxpay-api 1.1.0 API'
 '/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/alipay/AlipayWay.java'
 '/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/alipay/PayResult.java'
 '/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/rxpay-api/src/main/java/com/cuieney/sdk/rxpay/PaymentStatus.java'

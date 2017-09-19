@@ -2,9 +2,9 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.cuieney.library</groupId>
+  <groupId>com.cuieney</groupId>
   <artifactId>rxpay-api</artifactId>
-  <version>1.0.3</version>
+  <version>1.1.0</version>
   <packaging>aar</packaging>
   <name>payment tools</name>
   <url>https://github.com/Cuieney/rxpay</url>
@@ -17,7 +17,7 @@
   <developers>
     <developer>
       <id>cuieney</id>
-      <name>cuieney</name>
+      <name>xiaocong.cui</name>
       <email>cuieney@163.com</email>
     </developer>
   </developers>
@@ -40,9 +40,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.cuieney.rxpay</groupId>
-      <artifactId>rxpay-annotition</artifactId>
-      <version>1.0.3</version>
+      <groupId>com.cuieney</groupId>
+      <artifactId>rxpay-annotation</artifactId>
+      <version>1.0.9</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

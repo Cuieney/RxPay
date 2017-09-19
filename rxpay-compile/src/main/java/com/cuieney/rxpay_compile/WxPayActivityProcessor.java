@@ -1,4 +1,4 @@
-package com.cuieney.sdk;
+package com.cuieney.rxpay_compile;
 
 import com.google.auto.service.AutoService;
 
@@ -18,7 +18,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
-import static com.cuieney.sdk.Consts.ANNOTATION_TYPE_WX;
+import static com.cuieney.rxpay_compile.Consts.ANNOTATION_TYPE_WX;
 
 
 @AutoService(Processor.class)
@@ -38,9 +38,9 @@ public class WxPayActivityProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        Set<? extends Element> routeElements = roundEnvironment.getElementsAnnotatedWith(WX.class);
+        Set<? extends Element> routeElements = roundEnvironment.getElementsAnnotatedWith(com.cuieney.rxpay_annotation.WX.class);
         for (Element element : routeElements) {
-            WX wx = element.getAnnotation(WX.class);
+            com.cuieney.rxpay_annotation.WX wx = element.getAnnotation(com.cuieney.rxpay_annotation.WX.class);
             String packageName = wx.packageName();
             if (packageName.isEmpty()) {
                 return false;

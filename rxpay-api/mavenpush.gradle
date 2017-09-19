@@ -1,10 +1,17 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.3"
-def siteUrl = 'https://github.com/Cuieney/rxpay'   // 项目的主页
-def gitUrl = 'https://github.com/Cuieney/rxpay.git'   // Git仓库的url
-group = "com.cuieney.library"            // Maven Group ID for the artifact，
+ext {
+    bintrayName = 'rxpay-api'
+    artifact = bintrayName
+    libraryName = 'RxPay sdk'
+    libraryDescription = 'payment tools'
+    libraryVersion = rxpay_api_version
+}
+
+
+version = rxpay_api_version
+group = "com.cuieney"            // Maven Group ID for the artifact，
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -17,15 +24,15 @@ install {
                 // Set your license
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name licenseName
+                        url licenseUrl
                     }
                 }
                 developers {
                     developer {
-                        id 'cuieney'        //填写的一些基本信息
-                        name 'cuieney'
-                        email 'cuieney@163.com'
+                        id developerId        //填写的一些基本信息
+                        name developerName
+                        email developerEmail
                     }
                 }
                 scm {
@@ -62,12 +69,12 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        userOrg="cui131425"
-        repo = "mave"          //这个应该是传到maven的仓库的
-        name = "RxPay"    //发布的项目名字
+        userOrg=bintrayUserOrg
+        repo = bintrayRepo          //这个应该是传到maven的仓库的
+        name = bintrayName    //发布的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
+        licenses = ['Apache-2.0']
         publish = true
     }
 }

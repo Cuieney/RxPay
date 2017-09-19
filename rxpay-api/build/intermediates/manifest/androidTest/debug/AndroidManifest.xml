@@ -3,7 +3,7 @@
     package="com.cuieney.sdk.rxpay.test" >
 
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="15"
         android:targetSdkVersion="26" />
 
     <instrumentation

@@ -2,10 +2,16 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
-def versionName = "1.0.3"
-group "com.cuieney.rxpay"
-version versionName
 
+ext {
+    bintrayName = 'rxpay-annotation'
+    artifact = bintrayName
+    libraryName = 'rxpay annotation'
+    libraryDescription = 'The annotation used in rxpay api'
+    libraryVersion = rxpay_annotation_version
+}
+
+version = libraryVersion
 repositories {
     jcenter()
 }
@@ -41,13 +47,12 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     publications = ['mavenJava']
     pkg {
-        userOrg="cui131425"
-        repo = 'mave'
-        name = 'RxPay-Annotation'
-        desc = 'annotation for RxPay'
-        websiteUrl = 'https://github.com/Cuieney/rxpay'
-        issueTrackerUrl = 'https://github.com/Cuieney/rxpay/issues'
-        vcsUrl = 'https://github.com/Cuieney/rxpay'
+        userOrg=bintrayUserOrg
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
         publicDownloadNumbers = true
         licenses = ['MIT']
     }
@@ -59,9 +64,9 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId 'com.cuieney.library'
-            artifactId 'rxpay-annotation'
-            version versionName
+            groupId publishedGroupId
+            artifactId artifact
+            version libraryVersion
         }
     }
 }

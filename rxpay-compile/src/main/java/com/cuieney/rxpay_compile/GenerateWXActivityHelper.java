@@ -1,4 +1,4 @@
-package com.cuieney.sdk;
+package com.cuieney.rxpay_compile;
 
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import javax.annotation.processing.Filer;
 
-import static com.cuieney.sdk.Consts.*;
+import static com.cuieney.rxpay_compile.Consts.*;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.PUBLIC;
 

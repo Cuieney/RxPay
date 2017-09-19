@@ -2,10 +2,15 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
-def versionName = "1.0.3"
-group "com.cuieney.rxpay"
-version versionName
+ext {
+    bintrayName = 'rxpay-compiler'
+    artifact = bintrayName
+    libraryName = 'RxPay compiler'
+    libraryDescription = 'A compiler for Rxpay to find wx callback act'
+    libraryVersion = rxpay_compiler_version
+}
 
+version = libraryVersion
 repositories {
     jcenter()
 }
@@ -41,13 +46,12 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     publications = ['mavenJava']
     pkg {
-        userOrg="cui131425"
-        repo = 'mave'
-        name = 'RxPay-Compile'
-        desc = 'apt for rxpay'
-        websiteUrl = 'https://github.com/Cuieney/rxpay'
-        issueTrackerUrl = 'https://github.com/Cuieney/rxpay/issues'
-        vcsUrl = 'https://github.com/Cuieney/rxpay'
+        userOrg=bintrayUserOrg
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
         publicDownloadNumbers = true
         licenses = ['MIT']
     }
@@ -59,9 +63,9 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId 'com.cuieney.library'
-            artifactId 'rxpay-compile'
-            version versionName
+            groupId publishedGroupId
+            artifactId artifact
+            version libraryVersion
         }
     }
 }

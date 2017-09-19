@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cuieney.sdk.WX;
+import com.cuieney.rxpay_annotation.WX;
 import com.cuieney.sdk.rxpay.RxPay;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 @WX(packageName = "微信支付注册keystore时候的包名")
 public class MainActivity extends AppCompatActivity {

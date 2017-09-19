@@ -1,13 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
+    buildToolsVersion BUILDTOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
+        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
         versionName "1.0"
 
     }
@@ -24,7 +23,7 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile files('libs/alipaySdk-20170725.jar')
-    compile project(':rxpay-annotition')
+    compile 'com.cuieney:rxpay-annotation:1.0.9'
 }
 
 buildscript {

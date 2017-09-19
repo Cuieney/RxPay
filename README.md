@@ -12,8 +12,8 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney.library:rxpay-api:1.0.3'
-    	annotationProcessor 'com.cuieney.library:rxpay-compile:1.0.3'
+    	compile 'com.cuieney:rxpay-api:1.1.0'
+    	annotationProcessor 'com.cuieney:rxpay-compiler:1.1.0'
 }
 
 ```
