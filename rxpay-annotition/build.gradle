@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply from: 'mavenpush.gradle'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

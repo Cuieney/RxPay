@@ -23,7 +23,7 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile files('libs/alipaySdk-20170725.jar')
-    compile 'com.cuieney:rxpay-annotation:1.0.9'
+    compile 'com.cuieney:rxpay-annotation:1.1.1'
 }
 
 buildscript {
@@ -40,4 +40,3 @@ buildscript {
 repositories {
     jcenter()
 }
-apply from: 'mavenpush.gradle'

@@ -39,8 +39,7 @@ artifacts {
     archives sourcesJar, javadocJar
 }
 Properties properties = new Properties()
-//读取properties的配置信息，当然直接把信息写到代码里也是可以的
-properties.load(new File('/Users/cuieneydemacbook/Desktop/Demo/RxPay-master2/local.properties').newDataInputStream())
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
