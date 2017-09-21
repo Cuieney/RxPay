@@ -1,4 +1,3 @@
-
 ![](https://github.com/Cuieney/RxPay/blob/master/img/logo.png)
 
 
@@ -21,9 +20,12 @@ dependencies {
 在你的AndroidManifest文件中添加权限
 #### AndroidManifest
 ```
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 ```
 ### step 3
@@ -53,6 +55,27 @@ public class MainActivity extends AppCompatActivity
 
 ```
 上面的xxx.xxx.xxx就是你微信支付注册keystore时候的包名，报错没关系，编译会生成对应的Activity。
+
+对应的支付宝支付AndroidManifest需要添加的是
+
+```
+<activity
+    android:name="com.alipay.sdk.app.H5PayActivity"
+    android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+    android:exported="false"
+    android:screenOrientation="behind"
+    android:windowSoftInputMode="adjustResize|stateHidden" >
+</activity>
+ <activity
+    android:name="com.alipay.sdk.app.H5AuthActivity"
+    android:configChanges="orientation|keyboardHidden|navigation"
+    android:exported="false"
+    android:screenOrientation="behind"
+    android:windowSoftInputMode="adjustResize|stateHidden" >
+</activity>
+
+```
+
 
 ### step 4
 发起支付功能
@@ -95,6 +118,7 @@ public class MainActivity extends AppCompatActivity
 
 ![json.png](http://upload-images.jianshu.io/upload_images/3415839-16341c6eb0f938f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
 [code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
 
 #### 问题
@@ -117,7 +141,3 @@ Email <cuieney@163.com>
 > WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 > See the License for the specific language governing permissions and
 > limitations under the License.
-> ``
-
-
-
