@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 Email <cuieney@163.com>
 
 #### 微信交流群
-![](https://github.com/Cuieney/RxPay/blob/master/img/wechat.jpg)
+![](https://github.com/Cuieney/RxPay/blob/master/img/wechat.png)
 
 ### License
 
