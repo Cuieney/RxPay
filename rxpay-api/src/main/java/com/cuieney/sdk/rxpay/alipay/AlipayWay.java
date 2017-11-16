@@ -10,7 +10,14 @@ import com.alipay.sdk.app.PayTask;
 import com.cuieney.sdk.rxpay.PaymentStatus;
 
 import java.util.Map;
+import java.util.Observable;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
 /**
@@ -18,42 +25,36 @@ import io.reactivex.subjects.PublishSubject;
  */
 
 public class AlipayWay {
-    private static final int SDK_PAY_FLAG = 1;
-    static PublishSubject<PaymentStatus> mSubjects = PublishSubject.create();
-    @SuppressLint("HandlerLeak")
-    private static Handler mHandler = new Handler() {
 
-        @Override
-        public void handleMessage(Message msg) {
-            @SuppressWarnings("unchecked")
-            PayResult payResult = new PayResult((Map<String, String>) msg.obj);
-            String resultInfo = payResult.getResult();
-            String resultStatus = payResult.getResultStatus();
-            if (TextUtils.equals(resultStatus, "9000")) {
-                mSubjects.onNext(new PaymentStatus(true));
-            } else {
-                mSubjects.onNext(new PaymentStatus(false));
-            }
-        }
-    };
-
-
-    public static void payMoney(final Activity activity, final String orderInfo) {
-        new Thread(new Runnable() {
+    public static  Flowable<PaymentStatus> payMoney(final Activity activity, final String orderInfo) {
+        return Flowable.create(new FlowableOnSubscribe<PayTask>() {
             @Override
-            public void run() {
+            public void subscribe(FlowableEmitter<PayTask> e) throws Exception {
                 PayTask alipay = new PayTask(activity);
-                Map<String, String> result = alipay.payV2(orderInfo, true);
-                Message msg = new Message();
-                msg.what = SDK_PAY_FLAG;
-                msg.obj = result;
-                mHandler.sendMessage(msg);
+                e.onNext(alipay);
             }
-        }).start();
+        }, BackpressureStrategy.ERROR)
+                .map(new Function<PayTask, PaymentStatus>() {
+                    @Override
+                    public PaymentStatus apply(PayTask payTask) throws Exception {
+                        return createPaymentStatus(payTask,orderInfo);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io());
 
     }
 
-    public static PublishSubject<PaymentStatus> getSubjects() {
-        return mSubjects;
+
+    private static PaymentStatus createPaymentStatus(PayTask payTask,String orderInfo){
+        Map<String, String> result = payTask.payV2(orderInfo, true);
+        PayResult payResult = new PayResult(result);
+        String resultStatus = payResult.getResultStatus();
+        if (TextUtils.equals(resultStatus, "9000")) {
+            return new PaymentStatus(true);
+        } else {
+            return new PaymentStatus(false);
+        }
     }
+
 }

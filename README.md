@@ -11,8 +11,8 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:1.1.2'
-    	annotationProcessor 'com.cuieney:rxpay-compiler:1.1.2'
+    	compile 'com.cuieney:rxpay-api:2.0.0'
+    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.0'
 }
 
 ```
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 1.发起支付宝支付请求
 
 ```
- rxPay.requestAlipay("服务器产生的订单号")
+ rxPay.requestAlipay("服务器产生的订单信息")
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 2.发起微信支付请求
 
 ```
- rxPay.requestWXpay(new JSONObject(“服务器生成订单的后信息json”))
+ rxPay.requestWXpay(new JSONObject(“服务器生成订单的后拼接成下图这种json”))
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
@@ -116,10 +116,26 @@ public class MainActivity extends AppCompatActivity
 ```
 对应的json格式参考
 
-![json.png](http://upload-images.jianshu.io/upload_images/3415839-16341c6eb0f938f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+```
+{
+    "appId": "wxbc9988d5283cf187",
+    "nonceStr": "22508552d3fc22f867e33e6c56b30b16",
+    "packageValue": "prepay_id=wx2017111615352310043bce630782561965",
+    "partnerId": "1343162201",
+    "prepayId": "wx2017111615352310043bce630782561965",
+    "sign": "995be96b4ecaa972e2a8c5a20a7289df",
+    "timeStamp": "1510817728"
+}
+
+
+```
 
 
 [code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
+#### Tips
+* 如果你的项目中有之前集成了支付宝，请记得删除了alipaySdk-xxxxxxxx.jar，不然会冲突。
+* 对于调起微信支付的json的字段也可以参考[微信官方](https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5&pass_ticket=NlgmO52K8bxhFGF0ADjLk11K%2FrANUVHsE4lZ%2FMoJa4HcUD2MPqzYCuYgRZV64lmQ)
 
 #### 问题
 发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/RxPay/issues) or
@@ -144,3 +160,5 @@ Email <cuieney@163.com>
 > WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 > See the License for the specific language governing permissions and
 > limitations under the License.
+
+

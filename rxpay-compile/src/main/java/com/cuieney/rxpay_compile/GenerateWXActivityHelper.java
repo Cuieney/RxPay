@@ -102,12 +102,12 @@ public class GenerateWXActivityHelper {
 
         onRespMethod.addStatement(
                 "int errCode = baseResp.errCode;" +
-                "if (errCode == 0) {\n" +
-                "   $T.getDefault().post(new $T(true));\n" +
-                "}else{\n" +
-                "   $T.getDefault().post(new $T(false));\n" +
-                "}\n" +
-                "finish();\n",RXBUS_CN,PAYMENT_CN,RXBUS_CN,PAYMENT_CN);
+                        "if (errCode == 0) {\n" +
+                        "   $T.getDefault().post(new $T(true));\n" +
+                        "}else{\n" +
+                        "   $T.getDefault().post(new $T(false));\n" +
+                        "}\n" +
+                        "finish();\n",RXBUS_CN,PAYMENT_CN,RXBUS_CN,PAYMENT_CN);
 
         return onRespMethod;
 
@@ -119,7 +119,7 @@ public class GenerateWXActivityHelper {
      * @throws ClassNotFoundException
      */
     private FieldSpec generateField() throws ClassNotFoundException {
-        FieldSpec fieldSpec = FieldSpec.builder(Class.forName(IWXAPI), "api")
+        FieldSpec fieldSpec = FieldSpec.builder(IWXAPI, "api")
                 .addModifiers(PRIVATE)
                 .build();
         return fieldSpec;
@@ -136,7 +136,7 @@ public class GenerateWXActivityHelper {
         TypeSpec typeSpec = TypeSpec.classBuilder("WXPayEntryActivity")
                 .addModifiers(PUBLIC)
                 .addJavadoc(WARNING_TIPS)
-                .addSuperinterface(Class.forName(IWXAPIEventHandler))
+                .addSuperinterface(IWXAPI_EVENT_HANDLER)
                 .superclass(ACTIVITY_CN)
                 .addMethod(generateOnCreate().build())
                 .addMethod(generateOnNewIntent().build())

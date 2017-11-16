@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView payState;
     private RxPay rxPay;
 
-    private String json = "服务器生成订单后的json";
+    private String json = "服务器生成订单后的json 具体看README格式";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void  requestAlipay(){
-        rxPay.requestAlipay("服务器产生的订单号")
+        rxPay.requestAlipay("服务器产生的订单信息")
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {

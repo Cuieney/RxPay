@@ -1,6 +1,9 @@
 package com.cuieney.sdk.rxpay;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.processors.FlowableProcessor;
+import io.reactivex.processors.PublishProcessor;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
@@ -9,25 +12,34 @@ import io.reactivex.subjects.Subject;
  */
 
 public class RxBus {
-    private final Subject<Object> bus;
+    private final FlowableProcessor<Object> mBus;
+
     private RxBus() {
-        bus = PublishSubject.create();
+        // toSerialized method made bus thread safe
+        mBus = PublishProcessor.create().toSerialized();
     }
 
     public static RxBus getDefault() {
-        return RxBusHolder.sInstance;
+        return Holder.BUS;
     }
 
-    private static class RxBusHolder {
-        private static final RxBus sInstance = new RxBus();
+    public void post(Object obj) {
+        mBus.onNext(obj);
     }
 
-
-    public void post(Object o) {
-        bus.onNext(o);
+    public <T> Flowable<T> toFlowable(Class<T> tClass) {
+        return mBus.ofType(tClass);
     }
 
-    public <T> Observable<T> toObservable(Class<T> eventType) {
-        return bus.ofType(eventType);
+    public Flowable<Object> toFlowable() {
+        return mBus;
+    }
+
+    public boolean hasSubscribers() {
+        return mBus.hasSubscribers();
+    }
+
+    private static class Holder {
+        private static final RxBus BUS = new RxBus();
     }
 }

@@ -40,3 +40,4 @@ buildscript {
 repositories {
     jcenter()
 }
+apply from: 'mavenpush.gradle'
