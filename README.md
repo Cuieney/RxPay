@@ -11,8 +11,8 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.0.1'
-    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.1'
+    	compile 'com.cuieney:rxpay-api:2.0.2'
+    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.2'
 }
 
 ```
@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity
 
 ```
 {
-    "appId": "wxbc9988d5283cf187",
     "nonceStr": "22508552d3fc22f867e33e6c56b30b16",
     "packageValue": "prepay_id=wx2017111615352310043bce630782561965",
     "partnerId": "1343162201",
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity
 [code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
 #### Tips
 * 如果你的项目中有之前集成了支付宝，请记得删除了alipaySdk-xxxxxxxx.jar，不然会冲突。
-* 对于调起微信支付的json的字段也可以参考[微信官方](https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5&pass_ticket=NlgmO52K8bxhFGF0ADjLk11K%2FrANUVHsE4lZ%2FMoJa4HcUD2MPqzYCuYgRZV64lmQ)
+* 对于调起微信支付的json的字段请参考以上的json
 
 #### 问题
 发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/RxPay/issues) or

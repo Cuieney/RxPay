@@ -29,22 +29,24 @@ import io.reactivex.schedulers.Schedulers;
 public class WXPayWay {
 
 
-    public static Flowable<PaymentStatus> payMoney(Activity context, final JSONObject json) {
-        final String appId = getAppId(context);
-        final IWXAPI api = WXAPIFactory.createWXAPI(context, appId);
-        api.registerApp(appId);
+    public static Flowable<PaymentStatus> payMoney(final Activity context, final JSONObject json) {
+
         return Flowable.create(new FlowableOnSubscribe<PaymentStatus>() {
             @Override
             public void subscribe(final FlowableEmitter<PaymentStatus> e) throws Exception {
-                PayReq payReq = new PayReq();
-                payReq.appId = appId;
-                payReq.partnerId = json.getString("partnerId");
-                payReq.prepayId = json.getString("prepayId");
-                payReq.nonceStr = json.getString("nonceStr");
-                payReq.timeStamp = json.getString("timeStamp");
-                payReq.sign = json.getString("sign");
-                payReq.packageValue = "Sign=WXPay";
-                boolean sendReq = api.sendReq(payReq);
+                final String appId = getAppId(context);
+                final IWXAPI api = WXAPIFactory.createWXAPI(context, appId);
+                api.registerApp(appId);
+                PayReq req = new PayReq();
+                req.appId = appId;
+                req.partnerId		= json.getString("partnerId");
+                req.prepayId		= json.getString("prepayId");
+                req.nonceStr		= json.getString("nonceStr");
+                req.timeStamp		= json.getString("timeStamp");
+                req.packageValue	= json.getString("packageValue");
+                req.sign			= json.getString("sign");
+                req.extData			= "app data";
+                boolean sendReq = api.sendReq(req);
                 if (!sendReq) {
                     e.onNext(new PaymentStatus(false));
                     e.onComplete();
@@ -67,9 +69,7 @@ public class WXPayWay {
 
 
             }
-        }, BackpressureStrategy.ERROR)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io());
+        }, BackpressureStrategy.ERROR);
 
 
     }
