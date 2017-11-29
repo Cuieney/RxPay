@@ -11,8 +11,8 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.0.4'
-    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.4'
+    	compile 'com.cuieney:rxpay-api:2.0.5'
+    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.5'
 }
 
 ```
@@ -24,8 +24,8 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.0.4'
-    kapt com.cuieney:rxpay-compiler:2.0.4'
+    compile 'com.cuieney:rxpay-api:2.0.5'
+    kapt com.cuieney:rxpay-compiler:2.0.5'
     ...
 }
 
@@ -52,7 +52,7 @@ dependencies {
 @WX(packageName = "微信支付注册keystore时候的包名")
 public class MainActivity extends AppCompatActivity
 ```
-2.在AndroidManifest添加你微信支付的appid 和商户号
+2.在AndroidManifest添加你微信支付的appid 和商户号，apiKey（商户平台设置的密钥key）
 
 ```
    <meta-data
@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity
             android:value="wxb51b89cba83263"/>
    <meta-data
             android:name="PARTNER_ID"
+            android:value="wxb51b89cba83263"/>
+    //非必填项，做App端签名必填
+   <meta-data
+            android:name="API_KEY"
             android:value="wxb51b89cba83263"/>
 
 ```
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity
     "nonceStr": "非必填项",
     "packageValue": "非必填项",
     "prepayId": "必填项",
-    "sign": "非必填项（最好自己签名可能会出现签名失败）",
+    "sign": "非必填项（如果不填此选项，必须在AndroidManifest配置Api_key）",
     "timeStamp": "非必填项"
 }
 
