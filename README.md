@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity
    <meta-data
             android:name="WX_APPID"
             android:value="xxxxx"/>
-   //非必填项，此处填写后，请求json就可以不填
+   //非必填项，此处填写后，请求json的partnerId字段就可以不填
    <meta-data
             android:name="PARTNER_ID"
             android:value="xxxx"/>
-    //非必填项，做App端签名必填
+    //非必填项，此处填写后，请求json的sign字段就可以不填（即App端签名）
    <meta-data
             android:name="API_KEY"
             android:value="xxxxx"/>
