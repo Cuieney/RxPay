@@ -20,7 +20,7 @@ dependencies {
 #### kotlin 项目配置
 
 ```
-// 可以参考 module-kotlin 模块中的写法
+
 apply plugin: 'kotlin-kapt'
 
 dependencies {
