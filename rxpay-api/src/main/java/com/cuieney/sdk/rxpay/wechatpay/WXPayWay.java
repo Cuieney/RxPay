@@ -48,7 +48,7 @@ public class WXPayWay {
                 req.nonceStr = json.optString("nonceStr", genNonceStr());//随机字符串
                 req.timeStamp = json.optString("timeStamp", genTimeStamp());//时间戳
                 req.packageValue = json.optString("packageValue", "Sign=WXPay");//暂填写固定值Sign=WXPay
-                req.sign = json.optString("sign",genAppSign(req));
+                req.sign = json.optString("sign",genAppSign(req,getMetaData(context,"API_KEY")));
                 req.extData = "app data";
 
                 boolean sendReq = api.sendReq(req);
@@ -105,7 +105,7 @@ public class WXPayWay {
     }
 
 
-    public static String genAppSign(PayReq payReq) {
+    public static String genAppSign(PayReq payReq,String apiKey) {
         LinkedList<NameValuePair> params = new LinkedList<>();
         params.add(new NameValuePair("appid", payReq.appId));
         params.add(new NameValuePair("noncestr", payReq.nonceStr));
@@ -123,7 +123,7 @@ public class WXPayWay {
             tempSb.append('&');
         }
         tempSb.append("key=");
-        tempSb.append(payReq.appId);
+        tempSb.append(apiKey);
         return getMessageDigest(tempSb.toString().getBytes()).toUpperCase();
     }
 
