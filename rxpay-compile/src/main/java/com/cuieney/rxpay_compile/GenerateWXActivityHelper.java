@@ -44,7 +44,7 @@ public class GenerateWXActivityHelper {
                 .addParameter(paramSpec);
         onCreateMethod.addStatement(
                 "super.onCreate(savedInstanceState);\n" +
-                        "String appId = $T.getAppId(this);\n" +
+                        "String appId = $T.getMetaData(this,\"WX_APPID\");\n" +
                         "api = $T.createWXAPI(this, appId);\n" +
                         "api.handleIntent(getIntent(), this);",WXPAYWAT_CN,WXAPI_CN);
 

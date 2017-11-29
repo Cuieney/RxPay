@@ -23,7 +23,6 @@ import io.reactivex.subjects.PublishSubject;
 /**
  * Created by cuieney on 18/08/2017.
  */
-
 public class AlipayWay {
 
     public static  Flowable<PaymentStatus> payMoney(final Activity activity, final String orderInfo) {

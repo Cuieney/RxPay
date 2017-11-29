@@ -11,8 +11,8 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.0.2'
-    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.2'
+    	compile 'com.cuieney:rxpay-api:2.0.4'
+    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.4'
 }
 
 ```
@@ -36,12 +36,16 @@ dependencies {
 @WX(packageName = "微信支付注册keystore时候的包名")
 public class MainActivity extends AppCompatActivity
 ```
-2.在AndroidManifest添加你微信支付的appid
+2.在AndroidManifest添加你微信支付的appid 和商户号
 
 ```
    <meta-data
             android:name="WX_APPID"
             android:value="wxb51b89cba83263"/>
+   <meta-data
+            android:name="PARTNER_ID"
+            android:value="wxb51b89cba83263"/>
+
 ```
 3.在AndroidManifest的微信支付回调页面的Activity
 
@@ -119,12 +123,11 @@ public class MainActivity extends AppCompatActivity
 
 ```
 {
-    "nonceStr": "22508552d3fc22f867e33e6c56b30b16",
-    "packageValue": "prepay_id=wx2017111615352310043bce630782561965",
-    "partnerId": "1343162201",
-    "prepayId": "wx2017111615352310043bce630782561965",
-    "sign": "995be96b4ecaa972e2a8c5a20a7289df",
-    "timeStamp": "1510817728"
+    "nonceStr": "非必填项",
+    "packageValue": "非必填项",
+    "prepayId": "必填项",
+    "sign": "非必填项（最好自己签名可能会出现签名失败）",
+    "timeStamp": "非必填项"
 }
 
 
@@ -132,6 +135,33 @@ public class MainActivity extends AppCompatActivity
 
 
 [code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
+
+#### 混淆
+
+```
+-keep class com.alipay.android.app.IAlixPay{*;}
+-keep class com.alipay.android.app.IAlixPay$Stub{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
+-keep class com.alipay.sdk.app.PayTask{ public *;}
+-keep class com.alipay.sdk.app.AuthTask{ public *;}
+-keep class com.alipay.sdk.app.H5PayCallback {
+    <fields>;
+    <methods>;
+}
+-keep class com.alipay.android.phone.mrpc.core.** { *; }
+-keep class com.alipay.apmobilesecuritysdk.** { *; }
+-keep class com.alipay.mobile.framework.service.annotation.** { *; }
+-keep class com.alipay.mobilesecuritysdk.face.** { *; }
+-keep class com.alipay.tscenter.biz.rpc.** { *; }
+-keep class org.json.alipay.** { *; }
+-keep class com.alipay.tscenter.** { *; }
+-keep class com.ta.utdid2.** { *;}
+-keep class com.ut.device.** { *;}
+
+-dontwarn com.alipay.android.phone.mrpc.core.**
+
+```
 #### Tips
 * 如果你的项目中有之前集成了支付宝，请记得删除了alipaySdk-xxxxxxxx.jar，不然会冲突。
 * 对于调起微信支付的json的字段请参考以上的json
@@ -159,5 +189,3 @@ Email <cuieney@163.com>
 > WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 > See the License for the specific language governing permissions and
 > limitations under the License.
-
-
