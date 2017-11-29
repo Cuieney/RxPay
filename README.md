@@ -16,6 +16,22 @@ dependencies {
 }
 
 ```
+
+#### kotlin 项目配置
+
+```
+
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    compile 'com.cuieney:rxpay-api:2.0.4'
+    kapt com.cuieney:rxpay-compiler:2.0.4'
+    ...
+}
+
+```
+
+
 ### step 2
 在你的AndroidManifest文件中添加权限
 #### AndroidManifest
