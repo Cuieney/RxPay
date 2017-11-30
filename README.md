@@ -6,13 +6,15 @@
 **让支付从此简单下去，一键支付功能，支持支付宝支付，微信支付**
 
 ## 使用步骤
-### step 1
-#### Gradle
+### step 1（Gradle）
+#### java 项目配置
 
 ```
 dependencies {
     	compile 'com.cuieney:rxpay-api:2.1.1'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.0'
+        //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
 ```
@@ -156,7 +158,7 @@ public class MainActivity extends AppCompatActivity
 ```
 
 
-[code sample](https://github.com/Cuieney/rxpay/blob/master/app/src/main/java/com/cuieney/rxpay_master/MainActivity.java)
+[code sample](https://github.com/Cuieney/RxPay/tree/master/app/src/main/java/com/cuieney/android/rxpay)
 
 #### 混淆
 
