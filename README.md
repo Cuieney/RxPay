@@ -11,7 +11,7 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.1.1'
+    	compile 'com.cuieney:rxpay-api:2.1.2'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.0'
         //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.0'
+    compile 'com.cuieney:rxpay-api:2.1.2'
     kapt 'com.cuieney:rxpay-compiler:2.1.0'
     ...
 }
