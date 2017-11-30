@@ -28,7 +28,9 @@ object AlipayWay {
             val alipay = PayTask(activity)
             e.onNext(alipay)
         }, BackpressureStrategy.ERROR)
-                .map { payTask -> createPaymentStatus(payTask, orderInfo) }
+                .map { payTask ->
+                    createPaymentStatus(payTask, orderInfo)
+                }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
 
@@ -39,7 +41,7 @@ object AlipayWay {
         val result = payTask.payV2(orderInfo, true)
         val payResult = PayResult(result)
         val resultStatus = payResult.resultStatus
-        return if (TextUtils.equals(resultStatus, "9000")) {
+        return if (resultStatus.equals("9000")) {
             PaymentStatus(true)
         } else {
             PaymentStatus(false)
