@@ -7,6 +7,4 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="26" />
 
-    <application />
-
 </manifest>

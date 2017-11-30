@@ -1,6 +1,6 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-
+apply plugin: 'org.jetbrains.dokka-android'
 ext {
     bintrayName = 'rxpay-api'
     artifact = bintrayName
@@ -9,6 +9,11 @@ ext {
     libraryVersion = rxpay_api_version
 }
 
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
 
 version = rxpay_api_version
 group = "com.cuieney"            // Maven Group ID for the artifact，
@@ -45,13 +50,13 @@ install {
     }
 }
 task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
 }
-task javadoc(type: Javadoc) {
-    options.encoding = 'UTF-8'
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+task javadoc(type: Javadoc,dependsOn: dokka) {
+//    options.encoding = 'UTF-8'
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'

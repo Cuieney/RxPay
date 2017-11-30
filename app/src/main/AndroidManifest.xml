@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cuieney.rxpay_master">
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    package="com.cuieney.android.rxpay">
 
     <application
         android:allowBackup="true"
@@ -13,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".KotlinSampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,12 +17,21 @@
             </intent-filter>
         </activity>
 
+
         <meta-data
             android:name="WX_APPID"
-            android:value="wxb51b89cba83263de"/>
+            android:value="wxbc9988d5283cf187"/>
+
+        <meta-data
+            android:name="PARTNER_ID"
+            android:value="1343162201"/>
+        <meta-data
+            android:name="API_KEY"
+            android:value="qazwsxcderfvbgtyhnmju654321xgjwe"/>
+
 
         <activity
-            android:name="com.cuieney.sdk.wxapi.WXPayEntryActivity"
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"

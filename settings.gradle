@@ -1,1 +1,1 @@
-include ':app', ':rxpay-api', ':rxpay-annotition', ':rxpay-compile'
+include ':app', ':rxpay-compile', ':rxpay-annotation', ':rxpay-api'

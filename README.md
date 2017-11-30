@@ -11,8 +11,8 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.0.6'
-    	annotationProcessor 'com.cuieney:rxpay-compiler:2.0.6'
+    	compile 'com.cuieney:rxpay-api:2.1.1'
+    	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.0'
 }
 
 ```
@@ -24,8 +24,8 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.0.6'
-    kapt 'com.cuieney:rxpay-compiler:2.0.6'
+    compile 'com.cuieney:rxpay-api:2.1.0'
+    kapt 'com.cuieney:rxpay-compiler:2.1.0'
     ...
 }
 
