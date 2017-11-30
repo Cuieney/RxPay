@@ -1,5 +1,6 @@
 package com.cuieney.rxpay_compile;
 
+import com.cuieney.rxpay_annotation.WX;
 import com.google.auto.service.AutoService;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class WxPayActivityProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         Set<? extends Element> routeElements = roundEnvironment.getElementsAnnotatedWith(com.cuieney.rxpay_annotation.WX.class);
         for (Element element : routeElements) {
-            com.cuieney.rxpay_annotation.WX wx = element.getAnnotation(com.cuieney.rxpay_annotation.WX.class);
+            WX wx = element.getAnnotation(WX.class);
             String packageName = wx.packageName();
             if (packageName.isEmpty()) {
                 return false;

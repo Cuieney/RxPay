@@ -1,8 +1,10 @@
 package com.cuieney.sdk.rxpay.wechatpay;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.cuieney.sdk.rxpay.PaymentStatus;
@@ -32,23 +34,32 @@ import io.reactivex.schedulers.Schedulers;
  * wechat Method of payment
  */
 public class WXPayWay {
+    private static final String PARTNER_ID = "partnerId";
+    private static final String NONCE_STR = "nonceStr";
+    private static final String TIME_STAMP = "timeStamp";
+    private  static final String SIGN = "sign";
+    private static final String META_WX_APPID = "WX_APPID";
+    private static final String META_PARTNER_ID = "PARTNER_ID";
+    private static final String META_API_KEY = "API_KEY";
+
+
     public static Flowable<PaymentStatus> payMoney(final Activity context, final JSONObject json) {
 
         return Flowable.create(new FlowableOnSubscribe<PaymentStatus>() {
             @Override
             public void subscribe(final FlowableEmitter<PaymentStatus> e) throws Exception {
-                final String appId = getMetaData(context, "WX_APPID");
+                final String appId = getMetaData(context, META_WX_APPID);
                 final IWXAPI api = WXAPIFactory.createWXAPI(context, appId);
                 api.registerApp(appId);
                 PayReq req = new PayReq();
 
                 req.appId = appId;
-                req.partnerId = json.optString("partnerId", getMetaData(context, "PARTNER_ID"));//商户号
-                req.prepayId = json.optString("prepayId");//支付交易会话ID
-                req.nonceStr = json.optString("nonceStr", genNonceStr());//随机字符串
-                req.timeStamp = json.optString("timeStamp", genTimeStamp());//时间戳
-                req.packageValue = json.optString("packageValue", "Sign=WXPay");//暂填写固定值Sign=WXPay
-                req.sign = json.optString("sign",genAppSign(req,getMetaData(context,"API_KEY")));
+                setValue(req,PARTNER_ID,json.optString("partnerId"),context);
+                req.prepayId = json.optString("prepayId");
+                setValue(req,NONCE_STR,json.optString("nonceStr"),context);
+                setValue(req,TIME_STAMP,json.optString("timeStamp"),context);
+                req.packageValue = json.optString("packageValue", "Sign=WXPay");
+                setValue(req,SIGN,json.optString("sign"),context);
                 req.extData = "app data";
 
                 boolean sendReq = api.sendReq(req);
@@ -99,13 +110,45 @@ public class WXPayWay {
     }
 
 
-    public static String genNonceStr() {
+    private static void setValue(PayReq req, String value, String rawValue, Activity context) {
+        String configValue = rawValue;
+        switch (value) {
+            case PARTNER_ID:
+                if (configValue.isEmpty()) {
+                    configValue = getMetaData(context, META_PARTNER_ID);
+                }
+                req.partnerId = configValue;
+                break;
+            case NONCE_STR:
+                if (configValue.isEmpty()) {
+                    configValue = genNonceStr();
+                }
+
+                req.nonceStr = configValue;
+                break;
+            case TIME_STAMP:
+                if (configValue.isEmpty()) {
+                    configValue =  genTimeStamp();
+                }
+                req.timeStamp = configValue;
+                break;
+            case SIGN:
+                if (configValue.isEmpty()) {
+                    configValue =  genAppSign(req,getMetaData(context, META_API_KEY));
+                }
+                req.sign = configValue;
+                break;
+            default:break;
+        }
+    }
+
+    private static String genNonceStr() {
         Random random = new Random();
         return getMessageDigest(String.valueOf(random.nextInt(10000)).getBytes());
     }
 
 
-    public static String genAppSign(PayReq payReq,String apiKey) {
+    private static String genAppSign(PayReq payReq, String apiKey) {
         LinkedList<NameValuePair> params = new LinkedList<>();
         params.add(new NameValuePair("appid", payReq.appId));
         params.add(new NameValuePair("noncestr", payReq.nonceStr));
@@ -127,7 +170,7 @@ public class WXPayWay {
         return getMessageDigest(tempSb.toString().getBytes()).toUpperCase();
     }
 
-    public final static String getMessageDigest(byte[] buffer) {
+    private final static String getMessageDigest(byte[] buffer) {
         char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
             MessageDigest mdTemp = MessageDigest.getInstance("MD5");
@@ -147,7 +190,7 @@ public class WXPayWay {
         }
     }
 
-    public static String genTimeStamp() {
+    private static String genTimeStamp() {
         return String.valueOf(System.currentTimeMillis() / 1000);
     }
 }
