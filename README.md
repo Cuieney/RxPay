@@ -11,7 +11,7 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.1.1'
+    	compile 'com.cuieney:rxpay-api:2.1.4'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.0'
         //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.0'
+    compile 'com.cuieney:rxpay-api:2.1.4'
     kapt 'com.cuieney:rxpay-compiler:2.1.0'
     ...
 }
@@ -189,6 +189,14 @@ public class MainActivity extends AppCompatActivity
 #### Tips
 * 如果你的项目中有之前集成了支付宝，请记得删除了alipaySdk-xxxxxxxx.jar，不然会冲突。
 * 对于调起微信支付的json的字段请参考以上的json
+* 如果项目中还有Rxjava版本1的话为了防止代码冲突 请在build.gradle里面添加一下代码
+
+```
+ packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+```
 
 #### 问题
 发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/RxPay/issues) or
