@@ -144,7 +144,7 @@ object WXPayWay {
         for (i in params) {
             tempSb.append(i.name)
             tempSb.append('=')
-            tempSb.append(i.name)
+            tempSb.append(i.value)
             tempSb.append('&')
         }
         tempSb.append("key=")

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/RxPay-master2.iml" filepath="$PROJECT_DIR$/RxPay-master2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxpay.iml" filepath="$PROJECT_DIR$/rxpay.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxpay-annotation/rxpay-annotation.iml" filepath="$PROJECT_DIR$/rxpay-annotation/rxpay-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxpay-api/rxpay-api.iml" filepath="$PROJECT_DIR$/rxpay-api/rxpay-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxpay-compile/rxpay-compile.iml" filepath="$PROJECT_DIR$/rxpay-compile/rxpay-compile.iml" />
