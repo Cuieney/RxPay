@@ -24,5 +24,6 @@ object Consts {
     val BASEREQ_CN = ClassName.get("com.tencent.mm.opensdk.modelbase", "BaseReq")
     val INTENT_CN = ClassName.get("android.content", "Intent")
     val BUNDLE_CN = ClassName.get("android.os", "Bundle")
+    val LOG_CN = ClassName.get("android.util", "Log")
 
 }

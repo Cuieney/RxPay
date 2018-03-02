@@ -5,6 +5,7 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Message
 import android.text.TextUtils
+import android.util.Log
 
 import com.alipay.sdk.app.PayTask
 import com.cuieney.sdk.rxpay.PaymentStatus
@@ -44,6 +45,7 @@ object AlipayWay {
         return if (resultStatus.equals("9000")) {
             PaymentStatus(true)
         } else {
+            Log.e("Rxpay","${payResult.resultStatus},${payResult.result}")
             PaymentStatus(false)
         }
     }

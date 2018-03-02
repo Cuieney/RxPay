@@ -7,6 +7,7 @@ import com.cuieney.rxpay_compile.Consts.BUNDLE_CN
 import com.cuieney.rxpay_compile.Consts.INTENT_CN
 import com.cuieney.rxpay_compile.Consts.IWXAPI
 import com.cuieney.rxpay_compile.Consts.IWXAPI_EVENT_HANDLER
+import com.cuieney.rxpay_compile.Consts.LOG_CN
 import com.cuieney.rxpay_compile.Consts.PAYMENT_CN
 import com.cuieney.rxpay_compile.Consts.RXBUS_CN
 import com.cuieney.rxpay_compile.Consts.WARNING_TIPS
@@ -104,13 +105,14 @@ class GenerateWXActivityHelper
                 .addParameter(paramSpec)
 
         onRespMethod.addStatement(
-                ("int errCode = baseResp.errCode;" +
+                ("int errCode = baseResp.errCode;\n" +
+                        "\$T.e(\"Rxpay\", \"errCode:\" + errCode);\n" +
                         "if (errCode == 0) {\n" +
                         "   \$T.Companion.getDefault().post(new \$T(true));\n" +
                         "}else{\n" +
                         "   \$T.Companion.getDefault().post(new \$T(false));\n" +
                         "}\n" +
-                        "finish();\n"), RXBUS_CN, PAYMENT_CN, RXBUS_CN, PAYMENT_CN)
+                        "finish();\n"),LOG_CN, RXBUS_CN, PAYMENT_CN, RXBUS_CN, PAYMENT_CN)
 
         return onRespMethod
 

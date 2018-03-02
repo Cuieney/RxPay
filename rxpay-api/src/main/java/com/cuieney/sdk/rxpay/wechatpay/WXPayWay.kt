@@ -46,12 +46,24 @@ object WXPayWay {
             val req = PayReq()
 
             req.appId = appId
+            val exist = setValue(req, SIGN, json.optString("sign"), context)
+            if (!exist) {
+                setValue(req, NONCE_STR, json.optString("null"), context)
+                setValue(req, TIME_STAMP, json.optString("null"), context)
+            }else{
+                val nonceStrExist = setValue(req, NONCE_STR, json.optString("nonceStr"), context)
+                if (nonceStrExist) {
+                    throw NullPointerException(NONCE_STR + "  FIELD CANNOT BE EMPTY")
+                }
+                val timeStampExist = setValue(req, TIME_STAMP, json.optString("timeStamp"), context)
+                if (timeStampExist) {
+                    throw NullPointerException(TIME_STAMP + "  FIELD CANNOT BE EMPTY")
+                }
+            }
+            
             setValue(req, PARTNER_ID, json.optString("partnerId"), context)
             req.prepayId = json.optString("prepayId")
-            setValue(req, NONCE_STR, json.optString("nonceStr"), context)
-            setValue(req, TIME_STAMP, json.optString("timeStamp"), context)
             req.packageValue = json.optString("packageValue", "Sign=WXPay")
-            setValue(req, SIGN, json.optString("sign"), context)
             req.extData = "app data"
 
             val sendReq = api.sendReq(req)
@@ -81,7 +93,7 @@ object WXPayWay {
             info = context.application.packageManager
                     .getApplicationInfo(context.packageName,
                             PackageManager.GET_META_DATA)
-            val data = info!!.metaData.get(metaData) ?: throw NullPointerException(metaData + " field cannot be empty")
+            val data = info!!.metaData.get(metaData) ?: throw NullPointerException(metaData + "  FIELD CANNOT BE EMPTY")
             return data.toString()
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
@@ -91,18 +103,21 @@ object WXPayWay {
     }
 
 
-    private fun setValue(req: PayReq, value: String, rawValue: String?, context: Activity) {
+    private fun setValue(req: PayReq, value: String, rawValue: String?, context: Activity):Boolean {
         var configValue: String? = rawValue
+        var exist = true
         when (value) {
             PARTNER_ID -> {
                 if (configValue!!.length <= 0 ) {
                     configValue = getMetaData(context, META_PARTNER_ID)
+                    exist = false
                 }
                 req.partnerId = configValue
             }
             NONCE_STR -> {
                 if (configValue!!.length <= 0) {
                     configValue = genNonceStr()
+                    exist = false
                 }
 
                 req.nonceStr = configValue
@@ -110,18 +125,21 @@ object WXPayWay {
             TIME_STAMP -> {
                 if (configValue!!.length <= 0) {
                     configValue = genTimeStamp()
+                    exist = false
                 }
                 req.timeStamp = configValue
             }
             SIGN -> {
                 if (configValue!!.length <= 0) {
                     configValue = genAppSign(req, getMetaData(context, META_API_KEY))
+                    exist = false
                 }
                 req.sign = configValue
             }
             else -> {
             }
         }
+        return exist
     }
 
     private fun genNonceStr(): String? {

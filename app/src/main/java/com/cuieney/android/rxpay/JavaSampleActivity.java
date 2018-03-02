@@ -1,6 +1,7 @@
 package com.cuieney.android.rxpay;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class JavaSampleActivity extends AppCompatActivity {
                 wechatPay();
             }
         });
+        new Handler();
     }
 
     void alipay() {
@@ -77,6 +79,7 @@ public class JavaSampleActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
 
     }
 }
