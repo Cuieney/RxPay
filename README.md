@@ -11,7 +11,7 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.1.6'
+    	compile 'com.cuieney:rxpay-api:2.1.7'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.1'
         //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -145,16 +145,19 @@ public class MainActivity extends AppCompatActivity
 
 
 ```
+1.格式一（Manifest三个参数全设置了）
 {
-    "nonceStr": "非必填项",
-    "partnerId": "非必填项(如果不填此选项，必须在AndroidManifest配置PARTNER_ID)",
-    "packageValue": "非必填项",
-    "prepayId": "必填项",
-    "sign": "非必填项（如果不填此选项，必须在AndroidManifest配置API_KEY）",
-    "timeStamp": "非必填项"
+    "prepayId": "必填项",
 }
-
-如果不在manifest里面配置Apikey 以上所有字段必须传。
+2.格式二（Manifest只设置了Appid或PartnerId）
+{
+    "nonceStr": "必填项",
+    "partnerId": "必填项",
+    "packageValue": "必填项",
+    "prepayId": "必填项",
+    "sign": "必填项",
+    "timeStamp": "必填项"
+}
 
 ```
 
@@ -222,3 +225,5 @@ Email <cuieney@163.com>
 > WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 > See the License for the specific language governing permissions and
 > limitations under the License.
+
+
