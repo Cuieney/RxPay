@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity
 
 ```
 {
-    "nonceStr": "非必填项",
+    "nonceStr": "非必填项",
     "partnerId": "非必填项(如果不填此选项，必须在AndroidManifest配置PARTNER_ID)",
     "packageValue": "非必填项",
     "prepayId": "必填项",
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity
     "timeStamp": "非必填项"
 }
 
+如果不在manifest里面配置Apikey 以上所有字段必须传。
 
 ```
 
