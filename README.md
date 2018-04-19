@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity
 2.在AndroidManifest添加你微信支付的appid 和商户号，apiKey（商户平台设置的密钥key）
 
 ```
-   <meta-data
+    //WX_APPID必填项
+   <meta-data
             android:name="WX_APPID"
             android:value="xxxxx"/>
    //非必填项，此处填写后，请求json的partnerId字段就可以不填
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity
 {
     "prepayId": "必填项",
 }
-2.格式二（Manifest只设置了Appid或PartnerId）
+2.格式二（Manifest设置了PARTNER_ID 没有设置API_KEY）
 {
     "nonceStr": "必填项",
     "partnerId": "必填项",
