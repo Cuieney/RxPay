@@ -54,7 +54,7 @@ dependencies {
 @WX(packageName = "微信支付注册keystore时候的包名")
 public class MainActivity extends AppCompatActivity
 ```
-2.在AndroidManifest添加你微信支付的appid 和商户号，apiKey（商户平台设置的密钥key）
+2.在AndroidManifest添加你微信支付的appid 和PARTNER_ID商户号(固定不变的)，apiKey（商户平台设置的密钥key获取方法，可以问后台要可以到微信商户平台(pay.weixin.qq.com)-->账户设置-->API安全-->密钥设置）
 
 ```
     //WX_APPID必填项
