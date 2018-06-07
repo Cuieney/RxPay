@@ -22,34 +22,35 @@ class RxPay(@param:NonNull private val activity: Activity) {
         return aliPayment(orderInfo)
     }
 
-
-    fun requestWXpay(@NonNull json: JSONObject): Flowable<Boolean> {
-        return wxPayment(json)
+    fun requestWXpay(@NonNull orderInfo: String): Flowable<Boolean> {
+        return wxPayment(orderInfo)
     }
 
 
-    private fun ensure(payWay: PayWay, orderInfo: String?, json: JSONObject?): FlowableTransformer<Any, Boolean> {
+    private fun ensure(payWay: PayWay, orderInfo: String): FlowableTransformer<Any, Boolean> {
         return FlowableTransformer {
-            if (payWay === PayWay.WECHATPAY) {
-                requestImplementation(json).map { paymentStatus -> paymentStatus.isStatus }
-            } else requestImplementation(orderInfo).map { paymentStatus -> paymentStatus.isStatus }
+            requestImplementation(payWay,orderInfo).map { paymentStatus -> paymentStatus.isStatus }
         }
     }
 
-    private fun requestImplementation(json: JSONObject?): Flowable<PaymentStatus> {
-        return WXPayWay.payMoney(activity, json!!)
+    private fun requestImplementation(payWay: PayWay, orderInfo: String?): Flowable<PaymentStatus> {
+        if (payWay === PayWay.WECHATPAY) {
+            return WXPayWay.payMoney(activity, orderInfo!!)
+
+        } else if (payWay === PayWay.ALIPAY) {
+            return AlipayWay.payMoney(activity, orderInfo!!)
+
+        }
+        throw IllegalArgumentException("This library just supported ali and wechat pay")
     }
 
-    private fun requestImplementation(orderInfo: String?): Flowable<PaymentStatus> {
-        return AlipayWay.payMoney(activity, orderInfo!!)
-    }
 
     private fun aliPayment(orderInfo: String): Flowable<Boolean> {
-        return Flowable.just(orderInfo).compose(ensure(PayWay.ALIPAY, orderInfo, null))
+        return Flowable.just(orderInfo).compose(ensure(PayWay.ALIPAY, orderInfo))
     }
 
-    private fun wxPayment(json: JSONObject): Flowable<Boolean> {
-        return Flowable.just(json).compose(ensure(PayWay.WECHATPAY, null, json))
+    private fun wxPayment(orderInfo: String): Flowable<Boolean> {
+        return Flowable.just(orderInfo).compose(ensure(PayWay.WECHATPAY,orderInfo))
     }
 
     companion object {

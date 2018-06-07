@@ -5,5 +5,6 @@ package com.cuieney.sdk.rxpay
  */
 enum class PayWay {
     ALIPAY,
-    WECHATPAY
+    WECHATPAY,
+    OTHERS
 }

@@ -37,13 +37,19 @@ object WXPayWay {
     private val META_API_KEY = "API_KEY"
 
 
-    fun payMoney(context: Activity, json: JSONObject): Flowable<PaymentStatus> {
+    fun payMoney(context: Activity, orderInfo: String): Flowable<PaymentStatus> {
 
         return Flowable.create(FlowableOnSubscribe<PaymentStatus> { e ->
             val appId = getMetaData(context, META_WX_APPID)
             val api = WXAPIFactory.createWXAPI(context, appId)
             api.registerApp(appId)
             val req = PayReq()
+            val json:JSONObject
+            try {
+                json = JSONObject(orderInfo)
+            } catch (e: Exception) {
+                throw IllegalArgumentException(e)
+            }
 
             req.appId = appId
             val exist = setValue(req, SIGN, json.optString("sign"), context)
