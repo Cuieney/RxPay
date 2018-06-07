@@ -210,8 +210,9 @@ Email <cuieney@163.com>
 #### 微信交流群
 ![](https://github.com/Cuieney/RxPay/blob/master/img/wechat.png)
 
-过期加我微信拉你进群
+
 ![](https://github.com/Cuieney/RxPay/blob/master/img/myWechat.png)
+过期加我微信拉你进群
 
 ### License
 
