@@ -11,7 +11,7 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.1.7'
+    	compile 'com.cuieney:rxpay-api:2.1.8'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.1'
         //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.7'
+    compile 'com.cuieney:rxpay-api:2.1.8'
     kapt 'com.cuieney:rxpay-compiler:2.1.1'
     ...
 }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
 2.发起微信支付请求
 
 ```
- rxPay.requestWXpay(new JSONObject(“服务器生成订单的后拼接成下图这种json”))
+ rxPay.requestWXpay((“服务器生成订单的后拼接成下图这种json字符串”))
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
