@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.6'
+    compile 'com.cuieney:rxpay-api:2.1.7'
     kapt 'com.cuieney:rxpay-compiler:2.1.1'
     ...
 }
@@ -54,10 +54,11 @@ dependencies {
 @WX(packageName = "微信支付注册keystore时候的包名")
 public class MainActivity extends AppCompatActivity
 ```
-2.在AndroidManifest添加你微信支付的appid 和商户号，apiKey（商户平台设置的密钥key）
+2.在AndroidManifest添加你微信支付的appid 和PARTNER_ID商户号(固定不变的)，apiKey（商户平台设置的密钥key获取方法，可以问后台要可以到微信商户平台(pay.weixin.qq.com)-->账户设置-->API安全-->密钥设置）
 
 ```
-   <meta-data
+    //WX_APPID必填项
+   <meta-data
             android:name="WX_APPID"
             android:value="xxxxx"/>
    //非必填项，此处填写后，请求json的partnerId字段就可以不填
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity
 {
     "prepayId": "必填项",
 }
-2.格式二（Manifest只设置了Appid或PartnerId）
+2.格式二（Manifest设置了PARTNER_ID 没有设置API_KEY）
 {
     "nonceStr": "必填项",
     "partnerId": "必填项",
@@ -208,6 +209,10 @@ Email <cuieney@163.com>
 
 #### 微信交流群
 ![](https://github.com/Cuieney/RxPay/blob/master/img/wechat.png)
+
+
+![](https://github.com/Cuieney/RxPay/blob/master/img/myWechat.png)
+过期加我微信拉你进群
 
 ### License
 
