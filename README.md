@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.6'
+    compile 'com.cuieney:rxpay-api:2.1.7'
     kapt 'com.cuieney:rxpay-compiler:2.1.1'
     ...
 }
