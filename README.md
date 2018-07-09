@@ -11,7 +11,7 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.1.7'
+    	compile 'com.cuieney:rxpay-api:2.1.8'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.1'
         //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.7'
+    compile 'com.cuieney:rxpay-api:2.1.8'
     kapt 'com.cuieney:rxpay-compiler:2.1.1'
     ...
 }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
 2.发起微信支付请求
 
 ```
- rxPay.requestWXpay(new JSONObject(“服务器生成订单的后拼接成下图这种json”))
+ rxPay.requestWXpay((“服务器生成订单的后拼接成下图这种json字符串”))
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
@@ -192,8 +192,12 @@ public class MainActivity extends AppCompatActivity
 
 ```
 #### Tips
-* 如果你的项目中有之前集成了支付宝，请记得删除了alipaySdk-xxxxxxxx.jar，不然会冲突。
 * 对于调起微信支付的json的字段请参考以上的json
+* 以下的过度版本可以解决依赖包冲突问题
+    * com.cuieney:rxpay-api:**2.1.11** 版本 **阿里jar包 微信依赖** **都已剔除**
+    * com.cuieney:rxpay-api:**2.1.12** 版本**只剔除 阿里jar包**
+    * com.cuieney:rxpay-api:**2.1.13** 版本**只剔除 微信依赖**
+
 * 如果项目中还有Rxjava版本1的话为了防止代码冲突 请在build.gradle里面添加一下代码
 
 ```
