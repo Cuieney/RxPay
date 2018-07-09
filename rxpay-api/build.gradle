@@ -26,11 +26,11 @@ android {
 
 dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile files('libs/alipaySdk-20170725.jar')
     compile 'com.cuieney:rxpay-annotation:2.1.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation"org.jetbrains.anko:anko-common:$anko_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api"org.jetbrains.anko:anko-common:$anko_version"
 }
 
 buildscript {

@@ -65,23 +65,19 @@ public class JavaSampleActivity extends AppCompatActivity {
     void wechatPay() {
         //服务器生成订单后的json 具体看README格式
         String str = "{\"prepayId\":\"wx20171130142918877d249e440347896475\"}";
-        try {
-            new RxPay(this).requestWXpay(
-                    new JSONObject(str))
-                    .subscribe(new Consumer<Boolean>() {
-                        @Override
-                        public void accept(Boolean aBoolean) throws Exception {
-                            Log.e("oye", "accept: " + aBoolean);
-                        }
-                    }, new Consumer<Throwable>() {
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            Log.e("oye", "accept: ", throwable);
-                        }
-                    });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        new RxPay(this).requestWXpay(
+                str)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        Log.e("oye", "accept: " + aBoolean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e("oye", "accept: ", throwable);
+                    }
+                });
 
 
     }

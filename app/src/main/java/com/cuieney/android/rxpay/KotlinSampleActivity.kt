@@ -40,17 +40,12 @@ class KotlinSampleActivity : AppCompatActivity() {
     fun wechatPay() {
         //"服务器生成订单后的json 具体看README格式"
         var str = "{\"prepayId\":\"wx20171130142918877d249e440347896475\"}"
-        try {
-            RxPay(this).requestWXpay(
-                    JSONObject(str))
-                    .subscribe({ aBoolean ->
-                        Log.e("oye", "accept: " + aBoolean!!)
-                    }) { throwable ->
-                        Log.e("oye", "accept: ", throwable)
-                    }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
+        RxPay(this).requestWXpay(str)
+                .subscribe({ aBoolean ->
+                    Log.e("oye", "accept: " + aBoolean!!)
+                }) { throwable ->
+                    Log.e("oye", "accept: ", throwable)
+                }
 
     }
 }
