@@ -11,7 +11,7 @@
 
 ```
 dependencies {
-    	compile 'com.cuieney:rxpay-api:2.1.8'
+    	compile 'com.cuieney:rxpay-api:2.2.3'
     	annotationProcessor 'com.cuieney:rxpay-compiler:2.1.1'
         //如果你项目配置了kotlin请忽略下面这行的配置（否则会报错 Failed resolution of: Lkotlin/jvm/internal/Intrinsics）
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -26,7 +26,7 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile 'com.cuieney:rxpay-api:2.1.8'
+    compile 'com.cuieney:rxpay-api:2.2.3'
     kapt 'com.cuieney:rxpay-compiler:2.1.1'
     ...
 }
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity
 * 以下的过度版本可以解决依赖包冲突问题
     * com.cuieney:rxpay-api:**2.1.11** 版本 **阿里jar包 微信依赖** **都已剔除**
     * com.cuieney:rxpay-api:**2.1.12** 版本**只剔除 阿里jar包**
-    * com.cuieney:rxpay-api:**2.1.13** 版本**只剔除 微信依赖**
+    * com.cuieney:rxpay-api:**2.2.2** 版本**只剔除 微信依赖**
 
 * 如果项目中还有Rxjava版本1的话为了防止代码冲突 请在build.gradle里面添加一下代码
 
