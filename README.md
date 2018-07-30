@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity
 -keep class com.ta.utdid2.** { *;}
 -keep class com.ut.device.** { *;}
 
--dontwarn com.alipay.android.phone.mrpc.core.**
+-dontwarn com.alipay.**
 
 ```
 #### Tips
