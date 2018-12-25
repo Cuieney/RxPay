@@ -30,6 +30,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    api('com.cuieney:rxpay-api:2.1.8')
-    kapt 'com.cuieney:rxpay-compiler:2.1.1'
+
+//    api('com.cuieney:rxpay-api:2.1.8')
+//    kapt 'com.cuieney:rxpay-compiler:2.1.1'
+
+    api project(':rxpay-api')
+    kapt project(':rxpay-compile')
 }

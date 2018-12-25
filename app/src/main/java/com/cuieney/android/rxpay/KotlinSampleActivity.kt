@@ -9,9 +9,7 @@ import com.cuieney.sdk.rxpay.RxPay
 import org.json.JSONException
 import org.json.JSONObject
 
-@WX(packageName = "com.xxx.xxx")//微信支付注册keystore时候的包名
 class KotlinSampleActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

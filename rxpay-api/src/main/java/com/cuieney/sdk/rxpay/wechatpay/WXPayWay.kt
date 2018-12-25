@@ -3,24 +3,18 @@ package com.cuieney.sdk.rxpay.wechatpay
 import android.app.Activity
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-
 import com.cuieney.sdk.rxpay.PaymentStatus
 import com.cuieney.sdk.rxpay.RxBus
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
-
-import org.json.JSONObject
-
-import java.security.MessageDigest
-import java.util.LinkedList
-import java.util.Random
-
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableOnSubscribe
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import org.json.JSONObject
 import java.nio.charset.Charset
+import java.security.MessageDigest
+import java.util.*
 import kotlin.experimental.and
 
 
@@ -28,6 +22,7 @@ import kotlin.experimental.and
  * wechat Method of payment
  */
 object WXPayWay {
+
     private val PARTNER_ID = "partnerId"
     private val NONCE_STR = "nonceStr"
     private val TIME_STAMP = "timeStamp"
@@ -35,7 +30,6 @@ object WXPayWay {
     private val META_WX_APPID = "WX_APPID"
     private val META_PARTNER_ID = "PARTNER_ID"
     private val META_API_KEY = "API_KEY"
-
 
     fun payMoney(context: Activity, orderInfo: String): Flowable<PaymentStatus> {
 
@@ -89,8 +83,6 @@ object WXPayWay {
         }, BackpressureStrategy.ERROR)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
-
-
     }
 
     fun getMetaData(context: Activity, metaData: String): String? {
@@ -107,7 +99,6 @@ object WXPayWay {
 
         return null
     }
-
 
     private fun setValue(req: PayReq, value: String, rawValue: String?, context: Activity):Boolean {
         var configValue: String? = rawValue
@@ -153,7 +144,6 @@ object WXPayWay {
         return getMessageDigest(random.nextInt(10000).toString().toByteArray(Charset.defaultCharset()))
     }
 
-
     private fun genAppSign(payReq: PayReq, apiKey: String?): String {
         var params = LinkedList<NameValuePair>()
         params.add(NameValuePair("appid", payReq.appId))
@@ -194,11 +184,9 @@ object WXPayWay {
         } catch (e: Exception) {
             return null
         }
-
     }
 
     private fun genTimeStamp(): String {
         return (System.currentTimeMillis() / 1000).toString()
     }
 }
-

@@ -1,23 +1,23 @@
 package com.cuieney.rxpay_compile
 
-import com.cuieney.rxpay_compile.Consts.ACTIVITY_CN
-import com.cuieney.rxpay_compile.Consts.BASEREQ_CN
-import com.cuieney.rxpay_compile.Consts.BASERESP_CN
-import com.cuieney.rxpay_compile.Consts.BUNDLE_CN
-import com.cuieney.rxpay_compile.Consts.INTENT_CN
-import com.cuieney.rxpay_compile.Consts.IWXAPI
-import com.cuieney.rxpay_compile.Consts.IWXAPI_EVENT_HANDLER
-import com.cuieney.rxpay_compile.Consts.LOG_CN
-import com.cuieney.rxpay_compile.Consts.PAYMENT_CN
-import com.cuieney.rxpay_compile.Consts.RXBUS_CN
-import com.cuieney.rxpay_compile.Consts.WARNING_TIPS
-import com.cuieney.rxpay_compile.Consts.WXAPI_CN
-import com.cuieney.rxpay_compile.Consts.WXPAYWAT_CN
+import com.cuieney.rxpay_compile.Constant.ACTIVITY_CN
+import com.cuieney.rxpay_compile.Constant.BASEREQ_CN
+import com.cuieney.rxpay_compile.Constant.BASERESP_CN
+import com.cuieney.rxpay_compile.Constant.BUNDLE_CN
+import com.cuieney.rxpay_compile.Constant.INTENT_CN
+import com.cuieney.rxpay_compile.Constant.IWXAPI
+import com.cuieney.rxpay_compile.Constant.IWXAPI_EVENT_HANDLER
+import com.cuieney.rxpay_compile.Constant.LOG_CN
+import com.cuieney.rxpay_compile.Constant.PAYMENT_CN
+import com.cuieney.rxpay_compile.Constant.RXBUS_CN
+import com.cuieney.rxpay_compile.Constant.WARNING_TIPS
+import com.cuieney.rxpay_compile.Constant.WXAPI_CN
+import com.cuieney.rxpay_compile.Constant.WXPAYWAT_CN
 import com.squareup.javapoet.*
 import java.io.IOException
+import javax.annotation.processing.Filer
 import javax.lang.model.element.Modifier.PRIVATE
 import javax.lang.model.element.Modifier.PUBLIC
-import javax.annotation.processing.Filer
 
 
 /**
@@ -44,11 +44,11 @@ class GenerateWXActivityHelper
                 .addAnnotation(Override::class.java)
                 .addModifiers(PUBLIC)
                 .addParameter(paramSpec)
-        onCreateMethod.addStatement(
-                "super.onCreate(savedInstanceState);\n" +
-                        "String appId = \$T.INSTANCE.getMetaData(this,\"WX_APPID\");\n" +
-                        "api = \$T.createWXAPI(this, appId);\n" +
-                        "api.handleIntent(getIntent(), this);", WXPAYWAT_CN, WXAPI_CN)
+
+        onCreateMethod.addStatement("super.onCreate(savedInstanceState)")
+        onCreateMethod.addStatement("String appId = \$T.INSTANCE.getMetaData(this,\"WX_APPID\")", WXPAYWAT_CN)
+        onCreateMethod.addStatement("mWXAPI = \$T.createWXAPI(this, appId)", WXAPI_CN)
+        onCreateMethod.addStatement("mWXAPI.handleIntent(getIntent(), this)")
 
         return onCreateMethod
     }
@@ -67,10 +67,9 @@ class GenerateWXActivityHelper
                 .addModifiers(PUBLIC)
                 .addParameter(paramSpec)
 
-        onNewIntentMethod.addStatement(
-                ("super.onNewIntent(intent);\n"
-                        + "setIntent(intent);\n"
-                        + "api.handleIntent(intent, this);"))
+        onNewIntentMethod.addStatement("super.onNewIntent(intent)")
+        onNewIntentMethod.addStatement("setIntent(intent)")
+        onNewIntentMethod.addStatement("mWXAPI.handleIntent(intent, this)")
 
         return onNewIntentMethod
     }
@@ -88,7 +87,6 @@ class GenerateWXActivityHelper
                 .addAnnotation(Override::class.java)
                 .addModifiers(PUBLIC)
                 .addParameter(paramSpec)
-
     }
 
     /**
@@ -104,28 +102,25 @@ class GenerateWXActivityHelper
                 .addModifiers(PUBLIC)
                 .addParameter(paramSpec)
 
-        onRespMethod.addStatement(
-                ("int errCode = baseResp.errCode;\n" +
-                        "\$T.e(\"Rxpay\", \"errCode:\" + errCode);\n" +
-                        "if (errCode == 0) {\n" +
-                        "   \$T.Companion.getDefault().post(new \$T(true));\n" +
-                        "}else{\n" +
-                        "   \$T.Companion.getDefault().post(new \$T(false));\n" +
-                        "}\n" +
-                        "finish();\n"),LOG_CN, RXBUS_CN, PAYMENT_CN, RXBUS_CN, PAYMENT_CN)
+        onRespMethod.addStatement("int errCode = baseResp.errCode")
+        onRespMethod.addStatement("\$T.e(\"RxPay\", \"WXPayErrCode:\" + errCode)", LOG_CN)
+        onRespMethod.addStatement("if (errCode == 0) \n" +
+                "\$T.Companion.getDefault().post(new \$T(true));\n" +
+                " else \n" +
+                "\$T.Companion.getDefault().post(new \$T(false))", RXBUS_CN, PAYMENT_CN, RXBUS_CN, PAYMENT_CN)
+        onRespMethod.addStatement("finish()")
 
         return onRespMethod
-
     }
 
     /**
-     * Generate field api
+     * Generate field mWXAPI
      * @return
      * @throws ClassNotFoundException
      */
     @Throws(ClassNotFoundException::class)
     private fun generateField(): FieldSpec {
-        return FieldSpec.builder(IWXAPI, "api")
+        return FieldSpec.builder(IWXAPI, "mWXAPI")
                 .addModifiers(PRIVATE)
                 .build()
     }
@@ -153,6 +148,5 @@ class GenerateWXActivityHelper
         val javaFile = JavaFile.builder(packageName, typeSpec)
                 .build()
         javaFile.writeTo(mFiler)
-
     }
 }

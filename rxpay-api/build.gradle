@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
     buildToolsVersion BUILDTOOLS_VERSION
@@ -11,7 +10,6 @@ android {
         minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
         versionName "1.0"
-
     }
     buildTypes {
         release {
@@ -21,7 +19,6 @@ android {
 
         lintOptions { abortOnError false }
     }
-
 }
 
 dependencies {

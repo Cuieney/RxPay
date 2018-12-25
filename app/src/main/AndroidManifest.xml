@@ -3,54 +3,41 @@
     package="com.cuieney.android.rxpay">
 
     <application
+        android:name=".RxPayApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".KotlinSampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
 
+        <!-- 微信支付 -->
         <meta-data
             android:name="WX_APPID"
-            android:value="wxbc998sss8d5283csdsdf187"/>
+            android:value="wxbc998sss8d5283csdsdf187" />
 
         <meta-data
             android:name="PARTNER_ID"
-            android:value="124455465765"/>
+            android:value="124455465765" />
         <meta-data
             android:name="API_KEY"
-            android:value="sdsdsafshregewrew"/>
-
+            android:value="sdsdsafshregewrew" />
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            />
-
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
-        <activity
-            android:name="com.alipay.sdk.app.H5AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 
