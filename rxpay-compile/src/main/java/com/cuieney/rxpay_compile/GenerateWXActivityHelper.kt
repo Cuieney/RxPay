@@ -104,11 +104,10 @@ class GenerateWXActivityHelper
 
         onRespMethod.addStatement("int errCode = baseResp.errCode")
         onRespMethod.addStatement("\$T.e(\"RxPay\", \"WXPayErrCode:\" + errCode)", LOG_CN)
-        onRespMethod.addStatement("if (errCode == 0) \n" +
-                "\$T.Companion.getDefault().post(new \$T(true));\n" +
-                " else \n" +
-                "\$T.Companion.getDefault().post(new \$T(false))", RXBUS_CN, PAYMENT_CN, RXBUS_CN, PAYMENT_CN)
-        onRespMethod.addStatement("finish()")
+        onRespMethod.addStatement("if (errCode == 0) \n"+
+                "\$T.Companion.getDefault().post(new \$T(true))", RXBUS_CN, PAYMENT_CN)
+        onRespMethod.addStatement("else \n"+
+                "\$T.Companion.getDefault().post(new \$T(false))", RXBUS_CN, PAYMENT_CN)
 
         return onRespMethod
     }

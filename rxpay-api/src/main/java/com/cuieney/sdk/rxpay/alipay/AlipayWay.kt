@@ -30,6 +30,7 @@ object AlipayWay {
         val result = payTask.payV2(orderInfo, true)
         val payResult = PayResult(result)
         val resultStatus = payResult.resultStatus
+        Log.d("RxPay","alipay result:${payResult.result},${payResult.resultStatus}")
         return if (resultStatus.equals("9000")) {
             PaymentStatus(true)
         } else {
