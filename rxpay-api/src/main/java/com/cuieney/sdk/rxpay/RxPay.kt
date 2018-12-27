@@ -26,7 +26,6 @@ class RxPay(@param:NonNull private val activity: Activity) {
         return wxPayment(orderInfo)
     }
 
-
     private fun ensure(payWay: PayWay, orderInfo: String): FlowableTransformer<Any, Boolean> {
         return FlowableTransformer {
             requestImplementation(payWay,orderInfo).map { paymentStatus -> paymentStatus.isStatus }
@@ -44,7 +43,6 @@ class RxPay(@param:NonNull private val activity: Activity) {
         throw IllegalArgumentException("This library just supported ali and wechat pay")
     }
 
-
     private fun aliPayment(orderInfo: String): Flowable<Boolean> {
         return Flowable.just(orderInfo).compose(ensure(PayWay.ALIPAY, orderInfo))
     }
@@ -52,9 +50,8 @@ class RxPay(@param:NonNull private val activity: Activity) {
     private fun wxPayment(orderInfo: String): Flowable<Boolean> {
         return Flowable.just(orderInfo).compose(ensure(PayWay.WECHATPAY,orderInfo))
     }
-
-    companion object {
-        internal val TAG = "RxPay"
-    }
-
+//
+//    companion object {
+//        internal val TAG = "RxPay"
+//    }
 }

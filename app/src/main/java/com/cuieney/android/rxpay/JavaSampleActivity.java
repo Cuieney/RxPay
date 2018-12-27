@@ -13,13 +13,10 @@ import com.cuieney.sdk.rxpay.RxPay;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by cuieney on 2017/11/30.
- */
-@WX(packageName = "com.xxx.xxx")//微信支付注册keystore时候的包名
 public class JavaSampleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,7 +75,5 @@ public class JavaSampleActivity extends AppCompatActivity {
                         Log.e("oye", "accept: ", throwable);
                     }
                 });
-
-
     }
 }

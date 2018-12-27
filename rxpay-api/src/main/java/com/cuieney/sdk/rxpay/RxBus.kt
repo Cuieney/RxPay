@@ -8,6 +8,7 @@ import io.reactivex.processors.PublishProcessor
  * Help the callback act and rx communication
  */
 class RxBus private constructor() {
+
     private val mBus: FlowableProcessor<Any>
 
     init {

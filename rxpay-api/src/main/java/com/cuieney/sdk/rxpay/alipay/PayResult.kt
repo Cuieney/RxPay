@@ -35,7 +35,6 @@ class PayResult(rawResult: Map<String, String>?) {
                 }
             }
         }
-
     }
 
     override fun toString(): String {
