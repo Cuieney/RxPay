@@ -203,7 +203,14 @@ packagingOptions {
 
 发现bug或好的建议欢迎 [issues](https://github.com/Cuieney/RxPay/issues) or
 Email <cuieney@163.com>
+感谢大家的支持
 
+#### 微信交流群
+> 二维码过期加我微信拉你入群（41807357）
+
+![](img/wechat.png)
+
+    
 ### License
 
 ```
@@ -220,4 +227,8 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
 ```
+
+
