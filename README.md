@@ -82,7 +82,7 @@ new RxPay(this)
 
 ```
 @WX(packageName = "微信支付注册keystore时候的包名")
-public class XXApplication extends Application {
+public class XXActivity extends Activity {
 	
 }
 ```
