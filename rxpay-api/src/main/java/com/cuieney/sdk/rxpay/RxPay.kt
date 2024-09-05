@@ -23,7 +23,7 @@ class RxPay(@param:NonNull private val activity: Activity) {
     }
 
     fun requestWXpay(@NonNull orderInfo: String,wxAppId:String?=null,noInstalledNotice: String? = null): Flowable<Boolean> {
-        return wxPayment(orderInfo,wxAppId)
+        return wxPayment(orderInfo,wxAppId,noInstalledNotice)
     }
 
     private fun ensure(payWay: PayWay, orderInfo: String,wxAppId:String?=null,noInstalledNotice: String? = null): FlowableTransformer<Any, Boolean> {
