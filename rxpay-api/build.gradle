@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
@@ -22,27 +22,27 @@ android {
 }
 
 dependencies {
-    compile 'io.reactivex.rxjava2:rxjava:2.1.2'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    compile files('libs/alipaySdk-20180601.jar')
-    compile 'com.cuieney:rxpay-annotation:2.1.0'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    api"org.jetbrains.anko:anko-common:$anko_version"
+    api 'io.reactivex.rxjava2:rxjava:2.1.2'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
+    api files('libs/alipaySdk-20180601.jar')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+//    api "org.jetbrains.anko:anko-common:$anko_version"
+    implementation project(path: ':rxpay-annotation')
 }
 
 buildscript {
     repositories {
-        jcenter()
+        google()
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.15"
+
+
     }
 }
 repositories {
     jcenter()
 }
-apply from: 'mavenpush.gradle'
