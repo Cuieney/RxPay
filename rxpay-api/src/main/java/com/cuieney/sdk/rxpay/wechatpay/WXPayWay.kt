@@ -64,7 +64,7 @@ object WXPayWay {
                     throw NullPointerException(TIME_STAMP + "  FIELD CANNOT BE EMPTY")
                 }
             }
-            
+
             setValue(req, PARTNER_ID, json.optString("partnerId"), context)
             req.prepayId = json.optString("prepayId")
             req.packageValue = json.optString("packageValue", "Sign=WXPay")
@@ -76,25 +76,25 @@ object WXPayWay {
                 e.onComplete()
             } else {
                 RxBus.default.toFlowable(PaymentStatus::class.java)
-                        .subscribe({ paymentStatus ->
-                            e.onNext(paymentStatus)
-                            e.onComplete()
-                        }, {
-                            e.onNext(PaymentStatus(false))
-                            e.onComplete()
-                        })
+                    .subscribe({ paymentStatus ->
+                        e.onNext(paymentStatus)
+                        e.onComplete()
+                    }, {
+                        e.onNext(PaymentStatus(false))
+                        e.onComplete()
+                    })
             }
         }, BackpressureStrategy.ERROR)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
+            .subscribeOn(Schedulers.io())
+            .unsubscribeOn(Schedulers.io())
     }
 
     fun getMetaData(context: Activity, metaData: String): String? {
         var info: ApplicationInfo?
         try {
             info = context.application.packageManager
-                    .getApplicationInfo(context.packageName,
-                            PackageManager.GET_META_DATA)
+                .getApplicationInfo(context.packageName,
+                    PackageManager.GET_META_DATA)
             val data = info!!.metaData.get(metaData) ?: throw NullPointerException(metaData + "  FIELD CANNOT BE EMPTY")
             return data.toString()
         } catch (e: PackageManager.NameNotFoundException) {
