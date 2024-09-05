@@ -34,7 +34,7 @@ class RxPay(@param:NonNull private val activity: Activity) {
 
     private fun requestImplementation(payWay: PayWay, orderInfo: String?,wxAppId:String?=null, noInstalledNotice: String? = null): Flowable<PaymentStatus> {
         if (payWay === PayWay.WECHATPAY) {
-            return WXPayWay.payMoney(activity, orderInfo!!,wxAppId)
+            return WXPayWay.payMoney(activity, orderInfo!!,wxAppId,noInstalledNotice)
 
         } else if (payWay === PayWay.ALIPAY) {
             return AlipayWay.payMoney(activity, orderInfo!!)
