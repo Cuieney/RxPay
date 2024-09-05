@@ -28,7 +28,7 @@ class RxPay(@param:NonNull private val activity: Activity) {
 
     private fun ensure(payWay: PayWay, orderInfo: String,wxAppId:String?=null): FlowableTransformer<Any, Boolean> {
         return FlowableTransformer {
-            requestImplementation(payWay,orderInfo).map { paymentStatus -> paymentStatus.isStatus }
+            requestImplementation(payWay,orderInfo,wxAppId).map { paymentStatus -> paymentStatus.isStatus }
         }
     }
 
