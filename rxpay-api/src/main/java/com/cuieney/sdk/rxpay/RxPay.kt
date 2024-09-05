@@ -22,7 +22,7 @@ class RxPay(@param:NonNull private val activity: Activity) {
         return aliPayment(orderInfo)
     }
 
-    fun requestWXpay(@NonNull orderInfo: String,wxAppId:String?): Flowable<Boolean> {
+    fun requestWXpay(@NonNull orderInfo: String,wxAppId:String?=null): Flowable<Boolean> {
         return wxPayment(orderInfo,wxAppId)
     }
 
