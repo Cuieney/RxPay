@@ -1,5 +1,5 @@
 package com.cuieney.sdk.rxpay.wechatpay
-
+import android.text.TextUtils
 import android.app.Activity
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -31,10 +31,14 @@ object WXPayWay {
     private val META_PARTNER_ID = "PARTNER_ID"
     private val META_API_KEY = "API_KEY"
 
-    fun payMoney(context: Activity, orderInfo: String): Flowable<PaymentStatus> {
+    fun payMoney(context: Activity, orderInfo: String,wxAppId:String?=null): Flowable<PaymentStatus> {
 
         return Flowable.create(FlowableOnSubscribe<PaymentStatus> { e ->
-            val appId = getMetaData(context, META_WX_APPID)
+            val appId =  if (TextUtils.isEmpty(wxAppId)){
+                getMetaData(context, META_WX_APPID)
+            }else{
+                wxAppId
+            }
             val api = WXAPIFactory.createWXAPI(context, appId)
             api.registerApp(appId)
             val req = PayReq()
