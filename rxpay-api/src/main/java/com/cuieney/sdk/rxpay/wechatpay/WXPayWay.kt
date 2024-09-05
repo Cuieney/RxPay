@@ -36,7 +36,7 @@ object WXPayWay {
         context: Activity,
         orderInfo: String,
         wxAppId: String? = null,
-        noInstalledNotice: String? = null
+        noInstalledNotice: String? = null, interceptNoInstalled: Boolean = false
     ): Flowable<PaymentStatus> {
 
         return Flowable.create(FlowableOnSubscribe<PaymentStatus> { e ->
@@ -46,7 +46,7 @@ object WXPayWay {
                 wxAppId
             }
             val api = WXAPIFactory.createWXAPI(context, appId)
-            if (!api.isWXAppInstalled) {
+            if ((!api.isWXAppInstalled) && interceptNoInstalled) {
                 throw RuntimeException(
                     if (TextUtils.isEmpty(noInstalledNotice)) {
                         "未安装微信"

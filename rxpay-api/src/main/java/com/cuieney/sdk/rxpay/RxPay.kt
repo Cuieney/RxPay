@@ -22,19 +22,19 @@ class RxPay(@param:NonNull private val activity: Activity) {
         return aliPayment(orderInfo)
     }
 
-    fun requestWXpay(@NonNull orderInfo: String,wxAppId:String?=null,noInstalledNotice: String? = null): Flowable<Boolean> {
-        return wxPayment(orderInfo,wxAppId,noInstalledNotice)
+    fun requestWXpay(@NonNull orderInfo: String,wxAppId:String?=null,noInstalledNotice: String? = null,interceptNoInstalled: Boolean = false): Flowable<Boolean> {
+        return wxPayment(orderInfo,wxAppId,noInstalledNotice,interceptNoInstalled)
     }
 
-    private fun ensure(payWay: PayWay, orderInfo: String,wxAppId:String?=null,noInstalledNotice: String? = null): FlowableTransformer<Any, Boolean> {
+    private fun ensure(payWay: PayWay, orderInfo: String,wxAppId:String?=null,noInstalledNotice: String? = null,interceptNoInstalled: Boolean = false): FlowableTransformer<Any, Boolean> {
         return FlowableTransformer {
-            requestImplementation(payWay,orderInfo,wxAppId,noInstalledNotice).map { paymentStatus -> paymentStatus.isStatus }
+            requestImplementation(payWay,orderInfo,wxAppId,noInstalledNotice,interceptNoInstalled).map { paymentStatus -> paymentStatus.isStatus }
         }
     }
 
-    private fun requestImplementation(payWay: PayWay, orderInfo: String?,wxAppId:String?=null, noInstalledNotice: String? = null): Flowable<PaymentStatus> {
+    private fun requestImplementation(payWay: PayWay, orderInfo: String?,wxAppId:String?=null, noInstalledNotice: String? = null,interceptNoInstalled: Boolean = false): Flowable<PaymentStatus> {
         if (payWay === PayWay.WECHATPAY) {
-            return WXPayWay.payMoney(activity, orderInfo!!,wxAppId,noInstalledNotice)
+            return WXPayWay.payMoney(activity, orderInfo!!,wxAppId,noInstalledNotice,interceptNoInstalled)
 
         } else if (payWay === PayWay.ALIPAY) {
             return AlipayWay.payMoney(activity, orderInfo!!)
@@ -47,8 +47,8 @@ class RxPay(@param:NonNull private val activity: Activity) {
         return Flowable.just(orderInfo).compose(ensure(PayWay.ALIPAY, orderInfo))
     }
 
-    private fun wxPayment(orderInfo: String,wxAppId:String?,noInstalledNotice: String? = null): Flowable<Boolean> {
-        return Flowable.just(orderInfo).compose(ensure(PayWay.WECHATPAY,orderInfo,wxAppId,noInstalledNotice))
+    private fun wxPayment(orderInfo: String,wxAppId:String?,noInstalledNotice: String? = null,interceptNoInstalled: Boolean = false): Flowable<Boolean> {
+        return Flowable.just(orderInfo).compose(ensure(PayWay.WECHATPAY,orderInfo,wxAppId,noInstalledNotice,interceptNoInstalled))
     }
 //
 //    companion object {
