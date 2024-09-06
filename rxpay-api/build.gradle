@@ -22,27 +22,12 @@ android {
 }
 
 dependencies {
-    api 'io.reactivex.rxjava2:rxjava:2.1.2'
+    api 'io.reactivex.rxjava2:rxjava:2.2.12'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
     api files('libs/alipaySdk-20180601.jar')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 //    api "org.jetbrains.anko:anko-common:$anko_version"
     implementation project(path: ':rxpay-annotation')
-}
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-
-
-    }
-}
-repositories {
-    jcenter()
 }
