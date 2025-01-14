@@ -29,7 +29,7 @@ class GenerateWXActivityHelper
  *
  * @param packageName When registered appid package name from wechat pay
  */
-(private val packageName: String) {
+    (private val packageName: String) {
 
     /**
      * Generate OnCreate method
@@ -41,12 +41,15 @@ class GenerateWXActivityHelper
         val paramSpec = ParameterSpec.builder(BUNDLE_CN, "savedInstanceState").build()
 
         val onCreateMethod = MethodSpec.methodBuilder("onCreate")
-                .addAnnotation(Override::class.java)
-                .addModifiers(PUBLIC)
-                .addParameter(paramSpec)
+            .addAnnotation(Override::class.java)
+            .addModifiers(PUBLIC)
+            .addParameter(paramSpec)
 
         onCreateMethod.addStatement("super.onCreate(savedInstanceState)")
-        onCreateMethod.addStatement("String appId = \$T.INSTANCE.getMetaData(this,\"WX_APPID\")", WXPAYWAT_CN)
+        onCreateMethod.addStatement(
+            "String appId = \$T.INSTANCE.getMetaData(this,\"WX_APPID\")",
+            WXPAYWAT_CN
+        )
         onCreateMethod.addStatement("mWXAPI = \$T.createWXAPI(this, appId)", WXAPI_CN)
         onCreateMethod.addStatement("mWXAPI.handleIntent(getIntent(), this)")
 
@@ -63,9 +66,9 @@ class GenerateWXActivityHelper
         val paramSpec = ParameterSpec.builder(INTENT_CN, "intent").build()
 
         val onNewIntentMethod = MethodSpec.methodBuilder("onNewIntent")
-                .addAnnotation(Override::class.java)
-                .addModifiers(PUBLIC)
-                .addParameter(paramSpec)
+            .addAnnotation(Override::class.java)
+            .addModifiers(PUBLIC)
+            .addParameter(paramSpec)
 
         onNewIntentMethod.addStatement("super.onNewIntent(intent)")
         onNewIntentMethod.addStatement("setIntent(intent)")
@@ -84,9 +87,9 @@ class GenerateWXActivityHelper
         val paramSpec = ParameterSpec.builder(BASEREQ_CN, "baseReq").build()
 
         return MethodSpec.methodBuilder("onReq")
-                .addAnnotation(Override::class.java)
-                .addModifiers(PUBLIC)
-                .addParameter(paramSpec)
+            .addAnnotation(Override::class.java)
+            .addModifiers(PUBLIC)
+            .addParameter(paramSpec)
     }
 
     /**
@@ -98,17 +101,21 @@ class GenerateWXActivityHelper
     private fun generateOnResp(): MethodSpec.Builder {
         val paramSpec = ParameterSpec.builder(BASERESP_CN, "baseResp").build()
         val onRespMethod = MethodSpec.methodBuilder("onResp")
-                .addAnnotation(Override::class.java)
-                .addModifiers(PUBLIC)
-                .addParameter(paramSpec)
+            .addAnnotation(Override::class.java)
+            .addModifiers(PUBLIC)
+            .addParameter(paramSpec)
 
         onRespMethod.addStatement("int errCode = baseResp.errCode")
         onRespMethod.addStatement("\$T.e(\"RxPay\", \"WXPayErrCode:\" + errCode)", LOG_CN)
-        onRespMethod.addStatement("if (errCode == 0) \n"+
-                "\$T.Companion.getDefault().post(new \$T(true))", RXBUS_CN, PAYMENT_CN)
-        onRespMethod.addStatement("else \n"+
-                "\$T.Companion.getDefault().post(new \$T(false))", RXBUS_CN, PAYMENT_CN)
-
+        onRespMethod.addStatement(
+            "if (errCode == 0) \n" +
+                    "\$T.Companion.getDefault().post(new \$T(true))", RXBUS_CN, PAYMENT_CN
+        )
+        onRespMethod.addStatement(
+            "else \n" +
+                    "\$T.Companion.getDefault().post(new \$T(false))", RXBUS_CN, PAYMENT_CN
+        )
+        onRespMethod.addStatement("finish()")
         return onRespMethod
     }
 
@@ -120,8 +127,8 @@ class GenerateWXActivityHelper
     @Throws(ClassNotFoundException::class)
     private fun generateField(): FieldSpec {
         return FieldSpec.builder(IWXAPI, "mWXAPI")
-                .addModifiers(PRIVATE)
-                .build()
+            .addModifiers(PRIVATE)
+            .build()
     }
 
 
@@ -134,18 +141,18 @@ class GenerateWXActivityHelper
     @Throws(IOException::class, ClassNotFoundException::class)
     fun generateAct(mFiler: Filer) {
         val typeSpec = TypeSpec.classBuilder("WXPayEntryActivity")
-                .addModifiers(PUBLIC)
-                .addJavadoc(WARNING_TIPS)
-                .addSuperinterface(IWXAPI_EVENT_HANDLER)
-                .superclass(ACTIVITY_CN)
-                .addMethod(generateOnCreate().build())
-                .addMethod(generateOnNewIntent().build())
-                .addMethod(generateOnReq().build())
-                .addMethod(generateOnResp().build())
-                .addField(generateField())
-                .build()
+            .addModifiers(PUBLIC)
+            .addJavadoc(WARNING_TIPS)
+            .addSuperinterface(IWXAPI_EVENT_HANDLER)
+            .superclass(ACTIVITY_CN)
+            .addMethod(generateOnCreate().build())
+            .addMethod(generateOnNewIntent().build())
+            .addMethod(generateOnReq().build())
+            .addMethod(generateOnResp().build())
+            .addField(generateField())
+            .build()
         val javaFile = JavaFile.builder(packageName, typeSpec)
-                .build()
+            .build()
         javaFile.writeTo(mFiler)
     }
 }
